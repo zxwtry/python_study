@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import re
 import urllib
+import urllib2
 
 def getHtml(url):
 	page = urllib.urlopen(url)
@@ -13,7 +14,7 @@ def getImg(html):
 	imglist = re.findall(imgre,html)
 	x = 0
 	for imgurl in imglist:
-		urllib.urlretrieve("http://ww"+imgurl,str(x)+".jpg")
+		opener.read("http://ww"+imgurl,str(x)+".jpg")
 		x+=1
 		print(str(x)+" : "+"http://ww"+imgurl);
 
