@@ -16,8 +16,10 @@ fun06(**d)
 d['age'] = 31
 fun06(**d)
 
-d = {'age':30, 'name':"Jack",'val':"100"}
-fun06(**d)
+d = {'age':40, 'name':"JackMa",'val':"100"}
+#fun06(**d)
+#fun06(**d) will cause failure because of 'val'
+fun06(d['name'],d['age'])
 fun06(age=30, name="millo")
 
 fun06()
