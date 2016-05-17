@@ -7,6 +7,9 @@ for k,v in s.items():
 else:
     print "ending"
 
+
+
+
 for x in range( len(a) ):
     print a[x]
 for x in s:
