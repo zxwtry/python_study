@@ -6,6 +6,27 @@
 #_*_ coding:utf8 _*_
 
 
+def fun09(x, *arg1, **arg2):
+    print x
+    print arg1
+    print arg2
+fun09(1,2,3,4,5,u=9)
+#fun09(1,2,3,4,5,u=9,6,7,8)
+
+
+def fun08(x, **args):
+    print x
+    print args
+
+fun08(x=4,y=5)
+
+def fun07(x, *args):
+    print x
+    print args
+fun07(1)
+fun07(2,3)
+fun07(2,3,4)
+
 def fun06(name="defName", age=0):
     print "name : %s " %name
     print "age : %d " %age
