@@ -1,5 +1,14 @@
 #!usr/bin/python
 
+#type:  type,    int,    long,   float,  complex
+#type:  str,     lsit,   tuple,  hex,    oct
+#type:  chr,     ord
+
+str1 = "1234598"
+print "ord(\'1\'):\t",ord('1') 
+print "ord(\'A\'):\t",ord('A') 
+print "ord(\'a\'):\t",ord('a') 
+
 #range, xrange
 #xrange is much more efficent than range
 xobj = xrange(10)
