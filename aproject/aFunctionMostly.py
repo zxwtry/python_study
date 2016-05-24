@@ -1,8 +1,43 @@
 #!usr/bin/python
+#!encoding=utf-8
+
+#序列处理函数：filter zip map reduce
+print "[x for x in range(20) if x % 3 == 0]:\t",  [x for x in range(20) if x % 3 == 0]
+print "reduce(lambda x,y:x+y,range(101)): \t", reduce(lambda x,y:x+y,range(101))
+l=range(101)
+n=0
+for i in l:
+   n+=i
+print n 
+a=[1,2,3]
+b=[2,4,6]
+def fm(x,y):
+    return x*y
+print map(fm,a,b)
+name=['name1','name2','name3']
+age=[11,12,13]
+tel=[131,132,133]
+print zip(name,age,tel)
+print map(None,name,age,tel)
+def f(x):
+    if x>5:
+        return True
+    else:
+        return False
+l = range(10)
+print filter(f,l)
+
+
+print "\"192.168.1.123\".split('.') return list :\t", "192.168.1.123".split('.')
+print "\"192.168.1.123\".split('.',1) return list :\t", "192.168.1.123".split('.',1)
+#('a',"A"):两个参数代表全部替换
+#('a',"A",N):三个参数代表替换前面N个
+print "\"abcabcabc\".replace('a',\"A\"):\t", "abcabcabc".replace('a',"A") 
+print "\"hello world\".capitalize():\t", "hello world".capitalize() 
 
 #type:  type,    int,    long,   float,  complex
-#type:  str,     lsit,   tuple,  hex,    oct
-#type:  chr,     ord
+#type:  str,     list,   tuple,  hex,    oct
+#type:  chr,     ord 　　chr(97)返回'a'  ord('a')返回97
 
 str1 = "1234598"
 print "ord(\'1\'):\t",ord('1') 
