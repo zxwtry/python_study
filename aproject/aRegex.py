@@ -78,10 +78,15 @@ print csvt_re.findall("CSVT");
 #\section       要匹配的字符串
 #\\section      为re.compile取消反斜杠的特殊意义
 #\\\\section    为"\\section"的字符串实值(String literals)取消反斜杠的特殊意义
-r_a=r"\taab"
-r_A="\taab"
-print  "re.findall(r\"\taab\",\"\taab\") : \t", re.findall(r_a,r"\taab")
-print  "re.findall(\"\taab\",\"\taab\") : \t", re.findall(r_A,r"\taab")
+
+print  "re.findall(r\"\\taab\",\"\\taab\") : \t", re.findall(r"\taab","\taab")
+print  "re.findall(\"\\taab\",\"\\taab\") : \t", re.findall("\taab","\taab")
+
+print  "re.findall(r\"\\taab\",r\"\\taab\") : \t", re.findall(r"\taab",r"\taab")
+print  "re.findall(\"\\taab\",r\"\\taab\") : \t\t", re.findall("\taab",r"\taab")
+
+print  "re.findall(r\"\\taab\",r\"\\taab\") : \t", re.findall(r"\taab",r"aab")
+print  "re.findall(\"\\taab\",r\"\\taab\") : \t\t", re.findall("\taab",r"\taab")
 
 r_b=r"\paab"
 r_B="\paab"
