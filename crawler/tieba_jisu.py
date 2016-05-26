@@ -29,13 +29,13 @@ def getTie20(content):
         index.append(content.find(str(l+1)+".&#160;"));
         if index[l] == -1:
             end = l+1;
+        else:
             tieend=content.find("</a>",index[l])
-            print "tieend:   ",tieend
-            tie20.append(content[index[l]:tieend])
+            add=8 if l<9 else 9
+            tie20.append(content[index[l]:tieend].replace("&#160;"," "))
+    l20=range(end)
     for l in l20:
         print tie20[l]
-    print end
-    print index[19]
 
 #测试 visitURL
 name=raw_input("输入需要访问的贴吧名：")
