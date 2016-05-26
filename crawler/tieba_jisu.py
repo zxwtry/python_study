@@ -19,16 +19,28 @@ def visitURL(url):
     resp,content=h.request(url)
     return {"resp":resp,"content":content}
 
-
+tie20=list()
+#从content中解析出前20条帖子
+def getTie20(content):
+    l20=range(20)
+    index=list()
+    end=int(20)
+    for l in l20:
+        index.append(content.find(str(l+1)+".&#160;"));
+        if index[l] == -1:
+            end = l+1;
+            tieend=content.find("</a>",index[l])
+            print "tieend:   ",tieend
+            tie20.append(content[index[l]:tieend])
+    for l in l20:
+        print tie20[l]
+    print end
+    print index[19]
 
 #测试 visitURL
 name=raw_input("输入需要访问的贴吧名：")
 url_all=visitURL(getBaURL(name))
-file_write=open("tieba_content.txt",'w');
-file_write.write(url_all.get("content"));
-file_write.close();
-print "resp : \n", url_all.get("resp"),"\n\ncontent : \n",url_all.get("content")
-
+getTie20(url_all.get("content"))
 
 
 
