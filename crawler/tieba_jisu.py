@@ -20,20 +20,23 @@ def visitURL(url):
     return {"resp":resp,"content":content}
 
 tie20=list()
+tie20_end=20
 #从content中解析出前20条帖子
 def getTie20(content):
     l20=range(20)
     index=list()
-    end=int(20)
+    tie20_end=20
     for l in l20:
-        index.append(content.find(str(l+1)+".&#160;"));
-        if index[l] == -1:
-            end = l+1;
+        new_index=content.find(str(l+1)+".&#160;");
+        index.append(new_index);
+        if new_index == int(-1):
+            tie20_end = l
+            break
         else:
-            tieend=content.find("</a>",index[l])
+            new_end=content.find("</a>",new_index)
             add=8 if l<9 else 9
-            tie20.append(content[index[l]:tieend].replace("&#160;"," "))
-    l20=range(end)
+            tie20.append(content[new_index:new_end].replace("&#160;"," "))
+    l20=range(tie20_end)
     for l in l20:
         print tie20[l]
 
