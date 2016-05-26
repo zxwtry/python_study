@@ -20,27 +20,30 @@ def visitURL(url):
     return {"resp":resp,"content":content}
 
 tie20=list()
+ref20=list()
 tie20_end=20
 #从content中解析出前20条帖子
 def getTie20(content):
-    l20=range(20)
-    index=list()
     tie20_end=20
-    for l in l20:
+    for l in range(20):
         new_index=content.find(str(l+1)+".&#160;");
-        index.append(new_index);
         if new_index == int(-1):
             tie20_end = l
             break
         else:
             new_end=content.find("</a>",new_index)
             add=8 if l<9 else 9
-            tie20.append(content[new_index:new_end].replace("&#160;"," "))
+            tie20.append(content[new_index+add:new_end].replace("&#160;"," "))
+            ref_start=content.find("<a href=\"m?kz=",new_index-80)
+            ref_end=content.find("&",ref_start)
+            ref20.append(content[ref_start:ref_end])
     l20=range(tie20_end)
     for l in l20:
         print tie20[l]
+    for l in l20:
+        print ref20[l]
 
-#测试 visitURL
+#测试
 name=raw_input("输入需要访问的贴吧名：")
 url_all=visitURL(getBaURL(name))
 getTie20(url_all.get("content"))
