@@ -4,6 +4,7 @@
 import urllib
 import httplib2
 import tieba_parse
+import time
 
 base_url = 'http://tieba.baidu.com/mo/q---1973E7F76569BE76AADDCE7E1592E79C%3AFG%3D1-sz%40320_240%2C-1-3-0--2--wapp_1453584673349_887/m?tn=bdIndex&lp=5014'
 
@@ -42,26 +43,32 @@ def getTieURL(tiekz):
 
 #将content写入tie_content.txt
 def write():
-    url_all=visitURL(getTieURL("4572569332"))
+    url_all=visitURL(getTieURL("4554428746"))
     fileWrite = open("ba_content.txt","w")
     fileWrite.write(url_all.get("content"))
     fileWrite.close()
 
 #测试
-url_all=visitURL(getTieURL("4572569332"))
-msg=tieba_parse.getMsgFromContent(url_all.get("content"))
-print msg.get("page_now")
-print msg.get("page_all")
-print msg.get("tie_imgs")
+#url_all=visitURL(getTieURL("4554428746"))
+#url_all=visitURL(getTieURL("4572569332"))
+#msg=tieba_parse.getMsgFromContent(url_all.get("content"))
+#print msg.get("page_now")
+#print msg.get("page_all")
+#print msg.get("tie_imgs")
 
-#write()
-#name=raw_input("输入需要访问的贴吧名：")
-#url_all=visitURL(getBaURL(name))
-#tie=getTie20(url_all.get("content"))
-#tie20=tie.get("tie20")
-#for l in range(int(tie.get("tie20_end"))):
-#    print tie20[l]
-
+url_all=visitURL(getBaURL("显卡"))
+tie=getTie20(url_all.get("content"))
+tie20=tie.get("tie20")
+ref20=tie.get("ref20")
+for l in range(int(tie.get("tie20_end"))):
+    print "帖子标题：\t\t",tie20[l]
+    tie_all=visitURL(getTieURL(ref20[l]))
+    msg=tieba_parse.getMsgFromContent(tie_all.get("content"))
+    for msg_str in msg.get("tie_strs"):
+        print msg_str
+    print "page_now:\t\t",msg.get("page_now")
+    print "page_all:\t\t",msg.get("page_all")
+    time.sleep(1)
 
 
 

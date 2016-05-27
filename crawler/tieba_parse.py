@@ -30,9 +30,13 @@ def getMsgFromContent(content):
     match=re.findall(ur"<div class=\"i\">([\\u4e00-\\u9fa5]*)",content)
     pagenum_start=content.find("一页</a><br/>第");
     pagenum_end=content.find("页",pagenum_start+5)
-    pagenum_list=content[pagenum_start+18:pagenum_end].split("/")
-    page_now=int(pagenum_list[0])
-    page_all=int(pagenum_list[1])
+    if (pagenum_start==-1):
+        page_now=1
+        page_all=1
+    else:
+        pagenum_list=content[pagenum_start+18:pagenum_end].split("/")
+        page_now=int(pagenum_list[0])
+        page_all=int(pagenum_list[1])
     msg=dict()
     msg["page_now"]=page_now
     msg["page_all"]=page_all
@@ -49,15 +53,15 @@ def getMsgFromContent(content):
     return msg
 
 ###测试
-content_read=open("ba_content.txt","r")
-content=content_read.readline()
-msg=getMsgFromContent(content)
-print msg.get("page_now")
-print msg.get("page_all")
-tie_strs=msg.get("tie_strs")
-for tie_str in tie_strs:
-    print tie_str
-print msg.get("tie_imgs")
+#content_read=open("ba_content.txt","r")
+#content=content_read.readline()
+#msg=getMsgFromContent(content)
+#print msg.get("page_now")
+#print msg.get("page_all")
+#tie_strs=msg.get("tie_strs")
+#for tie_str in tie_strs:
+#    print tie_str
+#print msg.get("tie_imgs")
 
 ###解析一个吧的数据     
 #html_read=open("tieba_content.txt")
