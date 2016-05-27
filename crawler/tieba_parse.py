@@ -4,6 +4,25 @@ from HTMLParser import HTMLParser
 import httplib2
 import re
 
+#从content中解析出前20条帖子，这里是访问吧得到帖子
+def getTie20(content):
+    tie20=list()
+    ref20=list()
+    tie20_end=20
+    for l in range(20):
+        new_index=content.find(str(l+1)+".&#160;");
+        if new_index == int(-1):
+            tie20_end = l
+            break
+        else:
+            new_end=content.find("</a>",new_index)
+            add=8 if l<9 else 9
+            tie20.append(content[new_index+add:new_end].replace("&#160;"," ").replace("&quot;"," "))
+            ref_start=content.find("<a href=\"m?kz=",new_index-80)
+            ref_end=content.find("&",ref_start)
+            ref20.append(content[ref_start+14:ref_end])
+    return {"tie20":tie20, "ref20":ref20, "tie20_end":tie20_end}
+
 #处理帖内容，主要是消除图片链接
 def getWords(tie_str,imgs):
     tie_str=tie_str.replace("&#160;"," ")
