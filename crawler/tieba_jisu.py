@@ -16,11 +16,10 @@ def visitURL(url):
     resp,content=h.request(url)
     return {"resp":resp,"content":content}
 
-tie20=list()
-ref20=list()
-tie20_end=20
 #从content中解析出前20条帖子
 def getTie20(content):
+    tie20=list()
+    ref20=list()
     tie20_end=20
     for l in range(20):
         new_index=content.find(str(l+1)+".&#160;");
@@ -40,13 +39,21 @@ def getTie20(content):
 def getTieURL(tiekz):
     return "http://tieba.baidu.com/mo/q---1973E7F76569BE76AADDCE7E1592E79C%3AFG%3D1-sz%40320_240%2C-1-3-0--2--wapp_1453584673349_887/m?kz="+tiekz+"&is_bakan=0&lp=5010&pinf=1_2_0"
 
+#将content写入tie_content.txt
+def write():
+    url_all=visitURL(getTieURL("4546569064"))
+    fileWrite = open("tie_content.txt","w")
+    fileWrite.write(url_all.get("content"))
+    fileWrite.close()
+
 #测试
-name=raw_input("输入需要访问的贴吧名：")
-url_all=visitURL(getBaURL(name))
-tie=getTie20(url_all.get("content"))
-tie20=tie.get("tie20")
-for l in range(int(tie.get("tie20_end"))):
-    print tie20[l]
+write()
+#name=raw_input("输入需要访问的贴吧名：")
+#url_all=visitURL(getBaURL(name))
+#tie=getTie20(url_all.get("content"))
+#tie20=tie.get("tie20")
+#for l in range(int(tie.get("tie20_end"))):
+#    print tie20[l]
 
 
 
