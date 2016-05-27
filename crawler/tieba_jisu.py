@@ -5,6 +5,7 @@ import urllib
 import httplib2
 import tieba_parse
 import time
+import tieba_file
 
 base_url = 'http://tieba.baidu.com/mo/q---1973E7F76569BE76AADDCE7E1592E79C%3AFG%3D1-sz%40320_240%2C-1-3-0--2--wapp_1453584673349_887/m?tn=bdIndex&lp=5014'
 
@@ -39,7 +40,8 @@ def write():
 
 
 ###访问一个贴吧，得到首页的帖子
-url_all=visitURL(getBaURL("显卡"))
+ba_name="显卡"
+url_all=visitURL(getBaURL(ba_name))
 tie=tieba_parse.getTie20(url_all.get("content"))
 tie20=tie.get("tie20")
 ref20=tie.get("ref20")
@@ -47,6 +49,7 @@ for l in range(int(tie.get("tie20_end"))):
     print "帖子标题：\t\t",tie20[l]
     tie_all=visitURL(getTieURL(ref20[l]))
     msg=tieba_parse.getMsgFromContent(tie_all.get("content"))
+    tieba_file.save(ba_name,ref20[l],tie20[l],msg.get("tie_strs"))
     for msg_str in msg.get("tie_strs"):
         print msg_str
     print "page_now:\t\t",msg.get("page_now")
