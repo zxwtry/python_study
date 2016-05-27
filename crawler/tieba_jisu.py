@@ -3,6 +3,7 @@
 #贴吧极速版
 import urllib
 import httplib2
+import tieba_parse
 
 base_url = 'http://tieba.baidu.com/mo/q---1973E7F76569BE76AADDCE7E1592E79C%3AFG%3D1-sz%40320_240%2C-1-3-0--2--wapp_1453584673349_887/m?tn=bdIndex&lp=5014'
 
@@ -41,13 +42,19 @@ def getTieURL(tiekz):
 
 #将content写入tie_content.txt
 def write():
-    url_all=visitURL(getTieURL("4546569064"))
-    fileWrite = open("tie_content.txt","w")
+    url_all=visitURL(getTieURL("4572569332"))
+    fileWrite = open("ba_content.txt","w")
     fileWrite.write(url_all.get("content"))
     fileWrite.close()
 
 #测试
-write()
+url_all=visitURL(getTieURL("4572569332"))
+msg=tieba_parse.getMsgFromContent(url_all.get("content"))
+print msg.get("page_now")
+print msg.get("page_all")
+print msg.get("tie_imgs")
+
+#write()
 #name=raw_input("输入需要访问的贴吧名：")
 #url_all=visitURL(getBaURL(name))
 #tie=getTie20(url_all.get("content"))
