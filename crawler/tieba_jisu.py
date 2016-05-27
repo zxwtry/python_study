@@ -43,7 +43,7 @@ def getTieURL(tiekz):
 
 #将content写入tie_content.txt
 def write():
-    url_all=visitURL(getTieURL("4554428746"))
+    url_all=visitURL(getTieURL("4327492443"))
     fileWrite = open("ba_content.txt","w")
     fileWrite.write(url_all.get("content"))
     fileWrite.close()
@@ -56,6 +56,8 @@ def write():
 #print msg.get("page_all")
 #print msg.get("tie_imgs")
 
+
+###访问一个贴吧，得到首页的帖子
 url_all=visitURL(getBaURL("显卡"))
 tie=getTie20(url_all.get("content"))
 tie20=tie.get("tie20")

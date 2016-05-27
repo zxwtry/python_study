@@ -28,13 +28,13 @@ def getWords(tie_str,imgs):
 ###从一个Content解析Msg
 def getMsgFromContent(content):
     match=re.findall(ur"<div class=\"i\">([\\u4e00-\\u9fa5]*)",content)
-    pagenum_start=content.find("一页</a><br/>第");
-    pagenum_end=content.find("页",pagenum_start+5)
+    pagenum_start=content.find("</a><br/>第");
+    pagenum_end=content.find("页",pagenum_start+2)
     if (pagenum_start==-1):
         page_now=1
         page_all=1
     else:
-        pagenum_list=content[pagenum_start+18:pagenum_end].split("/")
+        pagenum_list=content[pagenum_start+12:pagenum_end].split("/")
         page_now=int(pagenum_list[0])
         page_all=int(pagenum_list[1])
     msg=dict()
@@ -52,7 +52,7 @@ def getMsgFromContent(content):
     msg["tie_imgs"]=tie_imgs
     return msg
 
-###测试
+###这里是tieba_jisu.py调用的版本
 #content_read=open("ba_content.txt","r")
 #content=content_read.readline()
 #msg=getMsgFromContent(content)
@@ -63,9 +63,10 @@ def getMsgFromContent(content):
 #    print tie_str
 #print msg.get("tie_imgs")
 
-###解析一个吧的数据     
-#html_read=open("tieba_content.txt")
 
+
+###老版本，看着用     
+#html_read=open("tieba_content.txt")
 #html_str=html_read.readline()
 #html_read.close()
 #l20=range(20)
