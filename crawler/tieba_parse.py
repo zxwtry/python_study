@@ -61,14 +61,24 @@ def getMsgFromContent(content):
     msg["page_all"]=page_all
     tie_strs=list()
     tie_imgs=list()
+    tie_lous=list()
     for l in match:
         tie_start=content.find("<div class=\"i\">"+str(l)+"楼.")
         tie_end=content.find("<br/>",tie_start)
         words=getWords(content[tie_start+15:tie_end],tie_imgs)
-        tie_strs.append(words.get("tie_str"))
+        tie_str_withlou=words.get("tie_str") 
+        tie_strs.append(tie_str_withlou)
+        lou_end=tie_str_withlou.find("楼")
+        if lou_end == -1:
+            tie_lous.append(1)
+        else:
+            lou_num_str=tie_str_withlou[0:lou_end]
+            tie_lous.append(int(lou_num_str))
+        
         ##print getWords(content[tie_start+15:tie_end]).get("tie_str")
     msg["tie_strs"]=tie_strs
     msg["tie_imgs"]=tie_imgs
+    msg["tie_lous"]=tie_lous
     return msg
 
 ###这里是tieba_jisu.py调用的版本

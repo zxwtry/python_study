@@ -7,7 +7,7 @@ ba_name:  吧的名字，会在/home/data/创建一个ba_name文件夹
 tie_name: 贴的标题
 tie_strs: 需要append的一个list()
 """ 
-def save(ba_name, tie_kw, tie_name, tie_strs):
+def save(ba_name, tie_kw, tie_name, tie_strs, tie_lous):
     base_dir="/home/data/"+ba_name
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)

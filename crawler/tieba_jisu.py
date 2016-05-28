@@ -49,7 +49,7 @@ for l in range(int(tie.get("tie20_end"))):
     print "帖子标题：\t\t",tie20[l]
     tie_all=visitURL(getTieURL(ref20[l]))
     msg=tieba_parse.getMsgFromContent(tie_all.get("content"))
-    tieba_file.save(ba_name,ref20[l],tie20[l],msg.get("tie_strs"))
+    tieba_file.save(ba_name,ref20[l],tie20[l],msg.get("tie_strs"),msg.get("tie_lous"))
     for msg_str in msg.get("tie_strs"):
         print msg_str
     print "page_now:\t\t",msg.get("page_now")
