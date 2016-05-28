@@ -74,7 +74,6 @@ def getMsgFromContent(content):
         else:
             lou_num_str=tie_str_withlou[0:lou_end]
             tie_lous.append(int(lou_num_str))
-        
         ##print getWords(content[tie_start+15:tie_end]).get("tie_str")
     msg["tie_strs"]=tie_strs
     msg["tie_imgs"]=tie_imgs
