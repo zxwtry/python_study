@@ -40,7 +40,7 @@ def write():
 
 
 ###访问一个贴吧，得到首页的帖子
-ba_name="显卡"
+ba_name="wp7"
 url_all=visitURL(getBaURL(ba_name))
 tie=tieba_parse.getTie20(url_all.get("content"))
 tie20=tie.get("tie20")
