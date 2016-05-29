@@ -31,3 +31,5 @@ def louOfBaName(ba_name,tie_kw):
     else:
         return 0
 
+def persistTiesOnepage():
+    
