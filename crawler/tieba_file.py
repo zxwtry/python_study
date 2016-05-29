@@ -20,7 +20,7 @@ def save(ba_name, tie_kw, tie_name, tie_strs, tie_lous):
         print "创建目录"
     file_save=open(getTieFilePath(base_dir,tie_kw,tie_name),"a")
     for tie_str in tie_strs:
-        file_save.write(tie_str)
+        file_save.write(tie_str+"\n")
     file_save.close()
 
 """历史测试

@@ -6,6 +6,11 @@
 #
 
 import re
+s=r"[0-9]+"
+st="a122bb3dc9d7"
+ans=re.findall(s,st)
+print ans[0]
+
 s=r'abc'
 print re.findall(s,"ababc")
 st = "top tip tqp tcp tep tvp"

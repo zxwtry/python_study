@@ -44,6 +44,16 @@ def getWords(tie_str,imgs):
         tie_str=tie_str.replace(img_tmp,"")
     return {"tie_str":tie_str}
 
+
+###进行int(str)前必须进行的判断
+def intForce(st,num):
+    s=r"[0-9]+"
+    ans=re.findall(s,st)
+    if len(ans)==0:
+        return int(num)
+    else:
+        return int(ans[0])
+
 ###从一个Content解析Msg
 def getMsgFromContent(content):
     match=re.findall(ur"<div class=\"i\">([\\u4e00-\\u9fa5]*)",content)
@@ -73,7 +83,8 @@ def getMsgFromContent(content):
             tie_lous.append(1)
         else:
             lou_num_str=tie_str_withlou[0:lou_end]
-            tie_lous.append(int(lou_num_str))
+            
+            tie_lous.append(intForce(lou_num_str,"0"))
         ##print getWords(content[tie_start+15:tie_end]).get("tie_str")
     msg["tie_strs"]=tie_strs
     msg["tie_imgs"]=tie_imgs
