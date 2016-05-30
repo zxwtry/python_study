@@ -64,8 +64,8 @@ def getMsgFromContent(content):
         page_all=1
     else:
         pagenum_list=content[pagenum_start+12:pagenum_end].split("/")
-        page_now=int(pagenum_list[0])
-        page_all=int(pagenum_list[1])
+        page_now=intForce(pagenum_list[0],"1")
+        page_all=intForce(pagenum_list[1],"1")
     msg=dict()
     msg["page_now"]=page_now
     msg["page_all"]=page_all

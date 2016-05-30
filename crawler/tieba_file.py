@@ -2,10 +2,13 @@
 #encoding=utf-8
 import os
 
+
+def delSpecialChar(st):
+    return st.replace("\t","").replace("\n","").replace("\\","").replace(" ","").replace("\T","").replace("\N","").replace("\b","").replace("\B","")
 def getTieFilePath(base_dir, tie_kw, tie_name):
-    return base_dir+"/"+tie_kw+"_"+tie_name
+    return delSpecialChar(base_dir)+"/"+delSpecialChar(tie_kw)+"_"+delSpecialChar(tie_name)
 def getBaseDir(ba_name):
-    return "/home/data/"+ba_name
+    return "/home/data/"+delSpecialChar(ba_name)
 
 
 """
@@ -18,9 +21,12 @@ def save(ba_name, tie_kw, tie_name, tie_strs, tie_lous):
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)
         print "创建目录"
+    if tie_kw == "" or tie_name == "" or tie_kw == "_" or tie_name == "+":
+        return
     file_save=open(getTieFilePath(base_dir,tie_kw,tie_name),"a")
     for tie_str in tie_strs:
-        file_save.write(tie_str+"\n")
+        if len(tie_str) <= 5120 and tie_str[0:5] != "\"1.0\"":
+            file_save.write(tie_str+"\n")
     file_save.close()
 
 """历史测试
