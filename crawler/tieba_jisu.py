@@ -52,8 +52,9 @@ while(True):
         tie_all=visitURL(getTieURL(ref20[l]))
         msg=tieba_parse.getMsgFromContent(tie_all.get("content"))
         tieba_file.save(ba_name,ref20[l],tie20[l],msg.get("tie_strs"),msg.get("tie_lous"))
-        for msg_str in msg.get("tie_strs"):
-            print msg_str
+        for tie_str in msg.get("tie_strs"):
+            if len(tie_str) <= 5120 and tie_str[0:5] != "\"1.0\"":
+                print tie_str
         print "page_now:\t\t",msg.get("page_now")
         print "page_all:\t\t",msg.get("page_all")
         time.sleep(random.randint(3,9))
