@@ -40,6 +40,7 @@ def visitAllYes(tiekz,page_now, page_all):
         tie_all=visitURL(urlYe)
         msg=tieba_parse.getMsgFromContent(tie_all.get("content"))
         tieba_file.save(ba_name,ref20[l],tie20[l],msg.get("tie_strs"),msg.get("tie_lous"))
+        tieba_file.downloadImages(msg["tie_imgs"])
         for tie_str in msg.get("tie_strs"):
             if len(tie_str) <= 5120 and tie_str[0:5] != "\"1.0\"":
                 print tie_str
@@ -69,6 +70,7 @@ while(True):
         tie_all=visitURL(getTieURL(ref20[l]))
         msg=tieba_parse.getMsgFromContent(tie_all.get("content"))
         tieba_file.save(ba_name,ref20[l],tie20[l],msg.get("tie_strs"),msg.get("tie_lous"))
+        tieba_file.downloadImages(msg["tie_imgs"])
         for tie_str in msg.get("tie_strs"):
             if len(tie_str) <= 5120 and tie_str[0:5] != "\"1.0\"":
                 print tie_str

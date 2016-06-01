@@ -40,7 +40,8 @@ def downloadImages(tie_imgs):
         os.makedirs(base_img_path)
     for tie_img in tie_imgs:
         img_path=tieba_helper.getImageDir()+downloadImageName(tie_img)
-        urllib.urlretrieve(tie_img,img_path)
+        if not os.path.exists(img_path):
+            urllib.urlretrieve(tie_img,img_path)
 
 def downloadImageName(tie_img):
     if len(tie_img) < 10:
