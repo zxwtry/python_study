@@ -3,7 +3,8 @@
 import os
 import tieba_helper
 import tieba_persist
-
+import re
+import time
 
 """
 ba_name:  吧的名字，会在/home/data/创建一个ba_name文件夹
@@ -32,6 +33,27 @@ def save(ba_name, tie_kw, tie_name, tie_strs, tie_lous):
         tieba_persist.writeDictLou(ba_name,dict_lou)
     file_save.close()
     
+def downloadImages(tie_imgs):
+    base_img_path=str(tieba_helper.getImageDir())
+    print type(base_img_path)
+    if not os.path.exists(base_img_path):
+        os.makedirs(base_img_path)
+    for tie_img in tie_imgs:
+        img_path=str(tieba_helper.getImageDir())+downloadImageName(tie_img)
+        print img_path 
+
+def downloadImageName(tie_img):
+    if len(tie_img) < 10:
+        return ""
+    res=r"[0-9a-z]*.jpg$"
+    imageName = str(re.findall(res,tie_img))
+    if len(imageName) < 5:
+        return str(time.time())+".jpg"
+    else:
+        return imageName
+
+downloadImages(["http://imgsrc.baidu.com/forum/w%3D580/sign=e9f69adf2af5e0feee1889096c6234e5/0a672a2442a7d933d17c71b5aa4bd11371f00177.jpg"])
+
 
 """历史测试
 save("wp7","123123123","这个一个测试帖子","我是"*20)
