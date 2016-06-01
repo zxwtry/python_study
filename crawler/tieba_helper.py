@@ -12,6 +12,6 @@ def getBaseDir(ba_name):
 def getDictLouInfoPath(ba_name):
     return getBaseDir(ba_name)+"/dictlou.info"
 def getImageDir():
-    str(getHomeDir()+"images/")
+    return getHomeDir()+"images/"
     
 

@@ -35,11 +35,10 @@ def save(ba_name, tie_kw, tie_name, tie_strs, tie_lous):
     
 def downloadImages(tie_imgs):
     base_img_path=str(tieba_helper.getImageDir())
-    print type(base_img_path)
     if not os.path.exists(base_img_path):
         os.makedirs(base_img_path)
     for tie_img in tie_imgs:
-        img_path=str(tieba_helper.getImageDir())+downloadImageName(tie_img)
+        img_path=tieba_helper.getImageDir()+downloadImageName(tie_img)
         print img_path 
 
 def downloadImageName(tie_img):
