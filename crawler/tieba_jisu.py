@@ -31,6 +31,23 @@ def write():
     fileWrite.write(url_all.get("content"))
     fileWrite.close()
 
+def getURLOfYe(page_now,tiekz):
+    return "http://tieba.baidu.com/mo/q---1973E7F76569BE76AADDCE7E1592E79C%3AFG%3D1-sz%40320_240%2C-1-3-0--2--wapp_1453584673349_887/m?kz="+tiekz+"&new_word=&pinf=1_2_0&pn="+str(page_now*30)+"&lp=6021"
+
+def visitAllYes(tiekz,page_now, page_all):
+    for page_here in range(page_all-1):
+        urlYe=getURLOfYe(page_here+1,tiekz)
+        tie_all=visitURL(urlYe)
+        msg=tieba_parse.getMsgFromContent(tie_all.get("content"))
+        tieba_file.save(ba_name,ref20[l],tie20[l],msg.get("tie_strs"),msg.get("tie_lous"))
+        for tie_str in msg.get("tie_strs"):
+            if len(tie_str) <= 5120 and tie_str[0:5] != "\"1.0\"":
+                print tie_str
+        print "page_now:\t\t",msg.get("page_now")
+        print "page_all:\t\t",msg.get("page_all")
+        time.sleep(random.randint(3,9))
+
+
 #测试
 #url_all=visitURL(getTieURL("4554428746"))
 #url_all=visitURL(getTieURL("4572569332"))
@@ -57,6 +74,7 @@ while(True):
                 print tie_str
         print "page_now:\t\t",msg.get("page_now")
         print "page_all:\t\t",msg.get("page_all")
+        visitAllYes(ref20[l],msg["page_now"],msg["page_all"])
         time.sleep(random.randint(3,9))
     time.sleep(random.randint(100,300))
 

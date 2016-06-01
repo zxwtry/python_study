@@ -21,13 +21,15 @@ def save(ba_name, tie_kw, tie_name, tie_strs, tie_lous):
     file_save=open(tieba_helper.getTieFilePath(base_dir,tie_kw,tie_name),"a")
     isWriteSuccess=False
     for tie_index in range(len(tie_strs)):
-        print tie_lous[tie_index]
         tie_str=tie_strs[tie_index]
-    for tie_str in tie_strs:
-        if len(tie_str) <= 5120 and tie_str[0:5] != "\"1.0\"":
+        if len(tie_str) <= 5120 and tie_str[0:5] != "\"1.0\"" and tie_lous[tie_index] > oldLous:
             file_save.write(tie_str+"\n")
             isWriteSuccess=True
-    print isWriteSuccess
+            oldLous=tie_lous[tie_index]
+    if isWriteSuccess:
+        dict_lou=tieba_persist.readDictLou(ba_name)
+        dict_lou[tie_kw]=oldLous
+        tieba_persist.writeDictLou(ba_name,dict_lou)
     file_save.close()
     
 
